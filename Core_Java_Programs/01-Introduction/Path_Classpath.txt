@@ -1,0 +1,10 @@
+get path:-- cmd>path
+
+
+
+
+
+
+get classpath:-- cmd> set CLASSPATH/classpath
+
+java -classpath C:\java\programs Test

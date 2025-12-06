@@ -1,0 +1,4 @@
+Hi!... Good Morning Hello Java
+10
+4.5
+true

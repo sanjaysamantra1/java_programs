@@ -1,0 +1,45 @@
+Create a JAR file: To create a .jar file , we can use jar cf command in the following way:
+jar cf jarfilename inputfiles
+Here, cf represents create the file. For example , assuming our package pack is available in C:\directory , to convert it into a jar file into the pack.jar , we can give the command as:
+
+C:\> jar cf pack.jar pack
+Now , pack.jar file is created
+
+Viewing a JAR file: To view the contents of .jar files, we can use the command as:
+jar tf jarfilename
+Here , tf represents table view of file contents. For example, to view the contents of our pack.jar file , we can give the command:
+
+C:/> jar tf pack.jar
+Now , the contents of pack.jar are displayed as:
+
+META-INF/
+META-INF/MANIFEST.MF
+pack/
+pack/class1.class
+pack/class2.class
+..
+..
+where class1 , class2 etc are the classes in the package pack. The first two entries represent that there is a manifest file created and added to pack.jar. The third entry represents the sub-directory with the name pack and the last two represent the files name in the directory pack.
+
+When we create .jar files , it automatically receives the default manifest file. There can be only one manifest file in an archive , and it always has the pathname.
+
+META-INF/MANIFEST.MF
+This manifest file is useful to specify the information about other files which are packaged.
+
+Extracting a JAR file: To extract the files from a .jar file , we can use:
+jar xf jarfilename
+Here, xf represents extract files from the jar files. For example , to extract the contents of our pack.jar file, we can write:
+
+C:\> jar xf pack.jar
+This will create the following directories in C:\
+
+META-INF
+pack // in this directory , we can see class1.class and class2.class.
+
+Updating a JAR File The Jar tool provides a ‘u’ option which you can use to update the contents of an existing JAR file by modifying its manifest or by adding files. The basic command for adding files has this format:
+jar uf jar-file input-file(s)
+here uf represent update jar file. For example , to update the contents of our pack.jar file, we can write:
+
+C:\>jar uf pack.jar
+Running a JAR file: In order to run an application packaged as a JAR file (requires the Main-class manifest header) , following command can be used:
+C:\>java -jar pack.jar

@@ -1,0 +1,211 @@
+What is Spring Boot
+===================
+-Spring Boot is an open source Java-based framework used to create micro Services.
+-Spring Boot is a framework built on top of Spring that makes it faster and easier to develop production-ready Spring applications
+-The latest version of Spring Boot is 2.0
+-Spring Boot = Spring + EmbededServer - Configuration
+-Spring is powerful but requires lots of configuration
+ Spring Boot removes that boilerplate and gives "just run" experience.
+
+
+
+| Feature                       | Spring MVC                     | Spring Boot                          |
+| ----------------------------- | ------------------------------ | ------------------------------------ |
+| **Project Setup**             | Manual setup (XML/Java Config) | Auto-configured, fast setup          |
+| **Boilerplate Code**          | More XML or Java configuration | Minimal code, auto-configuration     |
+| **Embedded Server**           | Needs external Tomcat/Jetty    | Comes with embedded server           |
+| **Dependencies Management**   | You manage all versions        | Uses Spring Boot Starter POMs        |
+| **REST API Development**      | Available, needs setup         | First-class support with annotations |
+| **Monitoring & Metrics**      | Manual setup                   | Built-in via Spring Boot Actuator    |
+| **Production-Ready Features** | You add manually               | Included out of the box              |
+
+
+
+
+What is Micro Service?
+======================
+-Micro Service is an architecture that allows the developers to develop and deploy services independently. 
+-Each service running has its own process and this achieves the lightweight model to support business applications.
+
+Advantages
+==========
+Easy deployment
+Simple scalability
+Compatible with Containers
+Minimum configuration
+Lesser production time
+
+
+Spring Boot flow architecture:
+=============================
+1. Client Sends HTTP Request(Browser, Postman, or frontend calls an endpoint) GET /api/users
+2. DispatcherServlet (Front Controller) : Intercepts all incoming requests
+3. HandlerMapping : Determines which controller method matches the request path and method
+4. Controller : Annotated with @RestController or @Controller, Handles HTTP requests and returns responses
+5. Service : Contains business logic , Annotated with @Service
+6. Repository : Interacts with the database (usually via Spring Data JPA) , Annotated with @Repository or extends JpaRepository
+7. Database Layer : Performs the actual DB operations (CRUD) and returns data to Repository → Service → Controller → Client
+
+Client --> Request --> Controller  --> Service --> Model --> DB --> Service --> Controller --> Client(Response)
+
+
+| Layer      | Annotation               | Responsibility                   |
+| ---------- | ------------------------ | -------------------------------- |
+| Controller | `@RestController`        | Accepts & responds to HTTP calls |
+| Service    | `@Service`               | Handles business logic           |
+| Repository | `@Repository`            | DB interactions                  |
+| Entity     | `@Entity`                | Maps Java class to DB table      |
+| Main App   | `@SpringBootApplication` | Bootstraps the app               |
+
+
+
+
+Creating Project
+================
+1. Spring Initializr 
+   https://start.spring.io (Spring Web - Dependency)   
+2. STS
+3. SpringBoot CLI
+   a. install Spring CLI (https://docs.spring.io/spring-boot/installing.html#getting-started.installing.cli)
+   b. spring init --dependencies=web,data-jpa,mysql --build=maven --java-version=17 demo-app
+
+
+
+Setup Spring Boot:
+==================
+1. Setup Java JDK from Oracle’s official site.
+2. Download and Setup STS(Spring Tools Suite).
+3. Start a new spring starter project
+	Click on File -> New -> Spring starter project
+	Fill the appropriate details and add dependency and finish.
+	Edit the application properties.
+	Run the main file as a Java application.
+
+
+@SpringBootApplication
+=======================
+-This is the main annotation used on application’s main class.
+-Bootstraps a Spring Boot app, should be present in Root package of our project.
+
+@SpringBootApplication annotation is equivalent of using below 3 annotations with their default attributes.
+	1. @Configuration
+			Marks the class as a source of bean definitions (like an old @Configuration class).
+	2. @EnableAutoConfiguration
+			Tells Spring Boot to automatically configure your application based on the dependencies on the classpath.
+			Example: If you have spring-boot-starter-web, it sets up Tomcat automatically.
+	3.@ComponentScan
+			Tells Spring to scan this package and sub-packages for @Component, @Service, @Controller, etc.
+			
+			
+@Controller vs @RestController
+===============================
+-@controller Marks the class as a controller.
+-All Methods of the controller returns view (JSP, HTML)
+-if a method wants to return JSON, we must explicitly annotate the method with @ResponseBody
+
+-@RestController is a shortcut annotation that combines @Controller + @ResponseBody
+-All methods of the controller class return the response body directly ( JSON / text)
+
+
+
+@RequestMapping
+===============
+-Used at controller class or method level to map URLs
+-Can define method, path, produces, etc.
+	@RestController
+	@RequestMapping("/api/products")
+	public class ProductController {
+		@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+		public String getProduct(@PathVariable Long id) {
+			return "Product with ID: " + id;
+		}
+	}
+
+
+@GetMapping
+===========
+-Use @GetMapping, @PostMapping, etc. instead of @RequestMapping for clarity.
+-Shortcut for @RequestMapping(method = RequestMethod.GET)
+
+
+
+@PathVariable
+=============
+-Extracts URL path parameters.
+	@GetMapping("/user/{username}")
+	public String getByUsername(@PathVariable String username) {
+		return "User: " + username;
+	}
+
+@lazy
+=====
+-@Lazy tells Spring to delay the creation of a bean until it is actually needed (requested)
+-Improve startup performance by avoiding creation of rarely used beans.
+-Break circular dependencies.
+-Delay heavy or resource-intensive bean initialization.
+-Improve memory usage when some beans are not needed immediately.
+
+
+
+
+What is a Spring Bean?
+======================
+-A Spring Bean is simply a Java object that is managed by the Spring IoC (Inversion of Control) container.
+-when a class is annotated or defined in Spring configuration and gets created/managed by Spring, it’s called a Spring Bean.
+	@Component
+	public class MyService {
+		public void serve() {
+			System.out.println("Service is serving...");
+		}
+	}
+
+Spring Bean Lifecycle
+======================
+1. Instantiation: Object is created.
+2. Dependency Injection: Spring injects dependencies.
+3. Initialization: Custom init logic runs (via @PostConstruct or afterPropertiesSet()).
+4. Ready to Use
+5. Destruction: On shutdown, cleanup logic runs (@PreDestroy or destroy())
+
+
+
+Without Dependency Injection
+============================
+-Object creation is done manually
+-Tightly Coupled Code
+
+
+What is Dependency Injection (DI)
+==================================
+-Dependency Injection (DI) is a design pattern where one object supplies the dependencies of another object, instead of the object creating them itself.
+-Spring supports 3 types of Dependency Injection:
+	1. Constructor-Based Injection (Recommended)
+	2. Setter-Based Injection
+	3. Field-Based Injection (Not Recommended for new code)
+
+
+
+
+
+
+Bean Scopes
+===========
+-By default, Spring Beans are singleton — one instance per Spring container.
+
+	singleton		One instance per Spring container (default)
+	prototype		New instance every time it's requested
+	request			One per HTTP request (Web apps)
+	session			One per HTTP session (Web apps)
+
+
+
+
+
+
+
+
+
+
+Resources:
+https://www.youtube.com/watch?v=90hAvj0A8C8&list=PL6W8uoQQ2c60g6_fcjDCLHSx1LBeVYqyZ
+https://www.youtube.com/watch?v=LJy0Bb-breQ

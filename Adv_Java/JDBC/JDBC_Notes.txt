@@ -1,0 +1,77 @@
+JDBC
+====
+-JDBC stands for Java Database Connectivity.
+-JDBC is a Java API to connect and execute the query with the database.
+-JDBC API uses JDBC drivers to connect with the database. There are four types of JDBC drivers:
+    1.JDBC-ODBC Bridge Driver.
+    2.Native Driver.
+    3.Network Protocol Driver.
+    4.Thin Driver
+
+Java Application --> JDBC API -->  JDBC Driver Manager --> JDBC Driver --> Database(Oracle/SQL Server)
+
+Type-1 Driver
+-------------
+-java --> JDBC Driver --> ODBC Driver --> DB Native functions --> Database
+-Performance is degraded since the JDBC call goes through the bridge to the ODBC driver then to the native database connectivity interface.
+-can be used for standalone applications.
+
+Type-2 Driver
+-------------
+-On the client machine, the Java Application calls are converted into vendor-specific database calls. Therefore, we must install native libraries for the used Database on the client machine.
+-java --> JDBC calls --> Native Driver --> Database
+
+Type-3 Driver
+-------------
+-three-tier approach is used to access databases.
+-there is no need install native libraries on the client machine.
+-Without changing the classes in the client side you can switch from one database to other.
+-java --> JDBC calls --> Type-3 Driver --> Middleware Server Driver --> Database
+-In case of increased network calls the communication will be slow.
+
+Type-4 Driver
+-------------
+-No special software on the client or server needed.
+-Platform independent (Completely coded in Java)
+
+
+
+
+Common JDBC Components
+======================
+1.DriverManager − This class manages a list of database drivers. Matches connection requests from the java application with the proper database driver using communication sub protocol. The first driver that recognizes a certain subprotocol under JDBC will be used to establish a database Connection.
+2.Driver − This interface handles the communications with the database server. You will interact directly with Driver objects very rarely. Instead, you use DriverManager objects, which manages objects of this type. It also abstracts the details associated with working with Driver objects.
+3.Connection − This interface with all methods for contacting a database. The connection object represents communication context, i.e., all communication with database is through connection object only.
+4.Statement − You use objects created from this interface to submit the SQL statements to the database. Some derived interfaces accept parameters in addition to executing stored procedures.
+5.ResultSet − These objects hold data retrieved from a database after you execute an SQL query using Statement objects. It acts as an iterator to allow you to move through its data.
+6.SQLException − This class handles any errors that occur in a database application.
+
+
+
+A JDBC program comprises the following 5 steps:
+==============================================
+STEP 1: Register the driver class 
+        Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+STEP 2: Create the Connection object, for connecting to the database server.
+        Connection conn = DriverManager.getConnection('connection url")
+STEP 3: Create a Statement object
+        Statement stmt = conn.createStatement();
+STEP 4: Write a SQL query and execute the query, via the Statement and Connection created.
+        String strSelect = "select title, price, qty from books";
+        ResultSet rset = stmt.executeQuery(strSelect);
+STEP 5: Close the connection object
+        conn.close();  
+
+
+
+JDBC Example-1
+==============
+1. open eclipse
+2. create a project --> create a class 
+3. run the java file
+4. for Exception in thread "main" java.lang.ClassNotFoundException
+   project --> right click --> build path --> configure build path -->
+   libraries --> add external jars --> ojdbc6.jar (Select from the installed directory)
+   Go to your windows start program and type Oracle – HOME_NAME and select Open file location
+   C:\app\SANJAY\product\21c\dbhomeXE\jdbc\lib
+   

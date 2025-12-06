@@ -1,0 +1,318 @@
+class mainly has 2 members - 
+
+	1. variable (data members)
+	2. method (member functions)
+	
+-for static members No need to create object. they are accessed by class name.
+	classname.member
+
+- for nonstatic members object needs to be created.
+	object.member
+	
+Command Line Arguement
+-----------------------
+- passing arguements to main() from command prompt 
+- main() takes only string type arguement
+
+parseInt()
+
+1. method() is from which class
+2. static / non-static
+3. arguement
+4. return type
+
+
+Datatypes
+-----------
+8 datatypes
+
+byte  - 1 byte - 
+short
+int 
+long
+float
+double
+char
+boolean
+
+Typecasting
+------------
+-converting value of one datatype to another
+
+Implicit (widening)
+
+explicit (narrowing)
+
+Variables
+----------
+1. instance / non-static
+	variables declared @class level without static keyword
+2. static
+	variables declared @class level with static keyword
+3. local
+	variables declared inside a method/block
+
+N.p- static and instance variables can be used anywhere inside the class whereas local variable can be used only inside the function where it is declared.
+
+N.p- default initialization is not applicable for local variables
+
+Operators
+---------
+1. no of operands - 
+	a. unary ( 1 operand)
+	b. binary (2 operands)
+	c. ternary (3 operands)
+2. functionality
+	a. Arithmetic (+ - * / %)   
+	b. Assignment (= += -= *=) 
+	c. relational (< <= > >=  == !=)
+	e. logical (&&, || , !)
+	d. bitwise  (& | ^ ~ <<)
+	f. increment/decrement(++ --)
+	
+	pre-increment  ++a
+	post-increment a++
+	
+	pre-decrement  --a
+	post-decrement a--
+	
+conditionals
+------------
+1. if
+2. if-else
+3. switch
+
+Loop
+-----
+-To execute a block of statements repeatedly
+
+- while
+- do-while
+- for
+
+
+OOP
+-----
+-Encapsulation, polymorphism, inheritance, abstaction
+
+class
+-----
+- stucture, blueprint,template from which objects are created
+- physical existance for class is not there,
+  logical existance
+- class 
+  variables - data members
+  method - member function
+
+Object
+------
+- instance of a class
+- physical existance
+- 
+
+Data Hiding
+------------
+- Hiding data of one class from other classes
+- data hiding is achieved by declaring the data members 'private'
+
+Access Specifiers
+----------------
+private - only inside the class
+default - only inside the package
+protected - anywhere inside the package	
+			only in the child classes of other package
+public - anywhere
+
+Encapsulation
+--------------
+Encapsulation = Data Hiding + Getters & Setters
+
+-for every data member, there should be 2 methods
+ 1 getter
+ 1 setter
+ 
+
+Polymorphism
+------------
+- method Overloading: declaring multiple methods with the same name,
+but either #of arguement or type of arguement or sequence of argument should differ.
+
+constructors
+-------------
+
+Types of constructor:-
+1. default constructor- 
+	when developer doesn't write a constructor in a class,at the time of compilation,compiler adds an empty constructor. that is default constructor
+	
+2. no-arguement constructor-
+	when developer writes any constructor with out arguement, that is no-arg constructor
+	
+3. parameterized constructor
+   when developer writes constructor with parameters, that is parameterized constructor
+
+Constructor Overloading
+------------------------
+- declaring multiple constructors in a class with either #of arg or
+  type of arg differenet
+  
+
+this
+-------
+
+
+
+Inheritance
+------------
+- a class inherits/extends the properties of another class
+- Reusability
+- is-a Relationship
+ 
+method overriding
+------------------
+- when child class writes a method which is already declared in parent
+- every java class is a child class of Object class
+
+- java.lang.Object is parent class for every java class.
+
+super
+-------
+- to invoke parent class constructor
+- call to super must be first statement in constructor
+- if parent class has no-arg constructor, compiler can write super()
+  inside child class constructor.
+- when parent class has a parameterized constructor, we have to write 
+  super() with paramaters explicitely inside child class constructor
+  
+final
+------
+- variable (restrict changing value of a variable)
+  final variable value cann't be changed. it becomes constant
+- method (restrict method overriding)
+  final method cann't be overriden in child class
+- class (restrict inheritance)
+  a final class cann't be inherited
+
+Abstraction
+-----------
+1. abstract class (0 - 100%)
+2. interface ( 100% )
+
+concrete method - method with body
+abstract method - method without body
+
+concrete class - class with all concrete methods
+abstract class - class with atleast 1 abstract method
+
+- abstract class cann't be instantiated
+
+interface
+---------
+- a structure like class
+- .class file gets generated for every interface like class
+- multiple inheritance
+
+- all the variables inside interface are 
+  public , static , final
+- all the methods inside interface are
+  public abstract
+
+Package
+----------
+- java.lang package gets imported to every java program by default.
+
+- use a package (import)
+- create a package (package)
+
+Scanner 
+-------
+
+
+String
+------
+-STring objects can be created in 2 ways
+
+1. String s1 = new String("Sachin"); // new
+2. String s2 = "sachin"; // string literal
+
+- when we create string object using 'new', everytime a new object 
+is created in 'heap'.
+
+- when we create string object using literal, first it will be checked 
+in SCP wheather a string object with same content is there in SCP or not?
+
+- if no, it creates a new object in scp.
+- if yes, it will not create a new object rather it will return the address
+of existing object
+
+equals()  compares content of 2 string objects
+==        compares address of 2 string objects
+
+isEmpty()
+length()
+charAt()
+indexOf()
+lastIndexOf()
+toUppercase()
+toLowerCase()
+equals()
+equalsIgnoreCase()
+replace()
+trim()
+split()
+
+StringBuffer
+-------------
+- mutable
+- synchronized(Thread Safe)
+- heap
+
+StringBuilder
+-------------
+- No thread Safe
+
+StringTokenizer
+---------------
+- java.util 
+- countTokens()
+  hasMoreTokens()
+  nextToken
+
+Exception Handling
+------------------
+Error - Compile time problems
+exception - runtime 
+
+Terminologies
+-------------
+try - it contains a block of statements where exception might occur
+catch - it contains exception handling code
+finally - it contains a block of statements which needs to be executed
+		  in any situation (important statements)
+throw - to throw exceptions explicitly (User Defined Exceptions)
+throws - to declare exceptions, to delegate the exception
+
+Type Of Exceptions
+------------------
+1. unchecked Exception
+2. Checked Exceptions
+
+- the exceptions which are checked at Compile Time but
+occurs at runtime are checked exceptions
+- the exception classes which are not child class of "RunTimeException"
+are checked
+
+- the exceptions which are checked at runtime and occurs at 
+runtime are unchecked exceptions.
+- the exception classes which are child class of "RunTimeException"
+are unchecked
+
+
+
+		  
+
+
+
+
+
+
+
