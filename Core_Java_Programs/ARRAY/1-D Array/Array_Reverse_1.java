@@ -1,20 +1,19 @@
 import java.util.*;
 
-class  Array_Reverse_1
-{
-  public static void main(String s1[])
-  {
-	int arr[]={10,18,12,13,14,15,16};
+class Array_Reverse_1 {
+	public static void main(String s1[]) {
+		int[] numbers = { 10, 20, 30, 40, 50 };
 
-	System.out.println("Before reverse: ");
-	for(int i:arr)
-	 System.out.print(i+"  ");
+		int left = 0;
+		int right = numbers.length - 1;
 
-	Arrays.reverse(arr);
-
-	System.out.println("\n After reverse: ");
-	for(int i:arr)
-	 System.out.print(i+"  ");
-
-  }
+		while (left < right) {
+			int temp = numbers[left];
+			numbers[left] = numbers[right];
+			numbers[right] = temp;
+			left++;
+			right--;
+		}
+		System.out.println(Arrays.toString(numbers));
+	}
 }

@@ -1,12 +1,10 @@
-class TernaryDemo
-{
- public static void main(String args[])
- {
-	  int a = 12;
-	  int b = 15;
+public class TernaryDemo {
+    public static void main(String[] args) {
+        int age = 20;
 
-	  int g = a>b ? a : b;
+        String result =
+                age >= 18 ? "Eligible" : "Not eligible";
 
-	  System.out.println("Greter is: "+g);
- }
+        System.out.println(result);
+    }
 }

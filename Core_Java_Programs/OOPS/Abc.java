@@ -3,7 +3,11 @@ class Student
 	int roll = 101;
 	String name = "aaaaa";
 
-	public String toString()
+	public Student(String string) {
+        //TODO Auto-generated constructor stub
+    }
+
+    public String toString()
 	{
 		return "roll: "+roll+" name: "+name;
 	}

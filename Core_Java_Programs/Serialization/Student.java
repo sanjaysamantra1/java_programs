@@ -8,4 +8,8 @@ class Student implements Serializable{
 		  this.id = id;
 		  this.name = name;
 	 }
+
+     public Student(String string) {
+        //TODO Auto-generated constructor stub
+     }
 }

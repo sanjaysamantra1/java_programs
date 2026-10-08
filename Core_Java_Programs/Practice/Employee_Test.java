@@ -19,7 +19,10 @@ class Employee{
 		this.sal = sal;
 		this.add = add;
 	}
-	public void disp()
+	public Employee(int i, String string, int j) {
+        //TODO Auto-generated constructor stub
+    }
+    public void disp()
 	{
 		System.out.println(empId+" "+name+" "+sal+" "+add.street+" "+add.city+" "+add.state);
 	}
